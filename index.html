@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Epic Gift</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#18191d;color:#fff;font-family:Arial,sans-serif}.app{max-width:720px;margin:auto;min-height:100vh;padding-bottom:82px}.top{padding:14px 16px 10px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:22px;font-weight:900}.balance{background:#26282e;border:1px solid #3a3d43;border-radius:16px;padding:9px 14px;color:#55d9ff;font-weight:900}.profile{display:flex;align-items:center;gap:12px;padding:8px 16px 15px;border-bottom:1px solid #34363c}.avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#713cff,#18b9ff);display:grid;place-items:center;font-size:24px}.name{font-weight:900}.sub{font-size:12px;color:#999da6;margin-top:4px}.section{padding:16px}.section h2{margin:0 0 12px;font-size:19px}.card{height:174px;border-radius:25px;margin-bottom:14px;padding:20px;position:relative;overflow:hidden;box-shadow:0 8px 24px #0005;cursor:pointer;transition:.15s}.card:active{transform:scale(.985)}.rocket{background:linear-gradient(135deg,#63b8f5,#4789de 55%,#5b42cf)}.hub{background:linear-gradient(135deg,#4e168f,#8b19ce 55%,#321269)}.pvp{background:linear-gradient(135deg,#ffb20e,#ff7c00)}.tag{display:inline-block;background:#fff;color:#5686b7;border-radius:9px;padding:7px 12px;font-weight:900}.card h1{position:absolute;bottom:28px;right:22px;margin:0;font-size:34px;text-shadow:0 3px 8px #0005}.card .emoji{position:absolute;left:25px;top:20px;font-size:82px;transform:rotate(-12deg)}.free{display:flex;gap:12px}.freebox{flex:1;min-height:155px;border:2px solid #7662ff;border-radius:22px;padding:16px;background:#23242a}.freebox:first-child{border-color:#f2c52e}.freebox b{font-size:22px}.freebox button{float:left;border:0;border-radius:15px;padding:10px 15px;background:#7858e8;color:white;font-weight:900}.nav{position:fixed;z-index:10;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);background:#202125;border-top:1px solid #37393f;display:flex;justify-content:space-around;padding:9px 2px}.nav div{text-align:center;color:#999ba2;font-size:12px;cursor:pointer}.nav b{display:block;font-size:22px;margin-bottom:3px}.active{color:#fff!important}.screen{display:none;padding:16px}.back{background:#2a2c32;border:0;color:#fff;border-radius:12px;padding:9px 14px;font-weight:900;margin-bottom:12px}.game{background:#101216;border:1px solid #30343b;border-radius:24px;padding:13px}.stage{height:330px;border-radius:19px;background:radial-gradient(circle at 65% 25%,#383c46,#111317 62%);position:relative;overflow:hidden}.star{position:absolute;width:3px;height:3px;background:white;border-radius:50%;opacity:.8}.trail{position:absolute;width:80%;height:90px;right:7%;top:56%;border-top:5px solid #e99572;border-radius:50%;transform:rotate(-8deg)}.ship{position:absolute;font-size:72px;right:45%;top:45%;filter:drop-shadow(0 0 13px #ff9b67);transition:right .1s linear,top .1s linear;z-index:2}.ship.explode{animation:explode .75s ease-out forwards}@keyframes explode{0%{transform:scale(1) rotate(-12deg);opacity:1}55%{transform:scale(1.5) rotate(20deg);opacity:.9;filter:drop-shadow(0 0 28px #ff3e29)}100%{transform:scale(.1) rotate(100deg);opacity:0}}.mx{position:absolute;top:14px;left:14px;background:#25292f;border-radius:12px;padding:8px 12px;font-size:21px;font-weight:900}.status{position:absolute;bottom:14px;right:14px;background:#25292f;border-radius:11px;padding:8px 12px;color:#c2c8d1}.history{display:flex;gap:8px;overflow:auto;padding:11px 0}.h{min-width:82px;padding:10px;border-radius:13px;background:#292d33;text-align:center;border:2px solid #40bb72;font-weight:900}.h.loss{border-color:#d95c62}.h.win{border-color:#40bb72}.play{width:100%;padding:17px;border:0;border-radius:17px;background:linear-gradient(90deg,#159fe8,#3567ec);color:white;font-size:18px;font-weight:900;cursor:pointer}.play:disabled{opacity:.55;cursor:not-allowed}.cash{display:none;margin-top:9px;background:#20a86a}.info{text-align:center;color:#8f96a2;font-size:12px;margin:10px}.panel{background:#22242a;border:1px solid #383b44;border-radius:20px;padding:18px}.panel h2{margin-top:0}.row{display:flex;justify-content:space-between;gap:12px;padding:13px 4px;border-bottom:1px solid #393c44}.row:last-child{border-bottom:0}.muted{color:#a8adb8;font-size:13px}.rank{font-weight:900;color:#ffd85a;min-width:36px}.invite{direction:ltr;text-align:left;word-break:break-all;background:#15161a;border-radius:12px;padding:12px;margin:12px 0;color:#74d9ff}.smallbtn{border:0;border-radius:12px;padding:10px 13px;background:#7858e8;color:#fff;font-weight:900}.toast{position:fixed;z-index:20;bottom:88px;left:50%;transform:translateX(-50%);max-width:90%;background:#292d33;border:1px solid #535963;border-radius:14px;padding:12px 16px;display:none;text-align:center}.toast.show{display:block}
+</style>
+</head>
+<body>
+<div class="app" id="home">
+  <div class="top"><div class="brand">🎁 Epic Gift</div><div class="balance">★ <span id="bal">0.000</span></div></div>
+  <div class="profile"><div class="avatar">👤</div><div><div class="name" id="uname">Player</div><div class="sub">رصيد النجوم الوهمية</div></div></div>
+  <div class="section">
+    <h2>🔴 Live</h2>
+    <div class="card rocket" onclick="openRocket()"><span class="tag">⚡ HOT!</span><span class="emoji">🚀</span><h1>🚀 ROCKET</h1></div>
+    <div class="card pvp" onclick="openPanel('⚔️ PVP','قسم المواجهات سيُفعّل قريباً. حالياً يمكنك اللعب في ROCKET وسحب أرباحك حسب المضاعف.')"><span class="tag">🔥 NEW!</span><span class="emoji">⚔️</span><h1>⚔️ PVP</h1></div>
+    <div class="card hub" onclick="openPanel('🎮 PLAY HUB','مركز الألعاب مفتوح. اختر ROCKET من الصفحة الرئيسية لبدء جولة.')"><span class="tag">🔥 HOT</span><span class="emoji">🎮</span><h1>🎮 PLAY HUB</h1></div>
+    <div class="free"><div class="freebox"><b>FREE24</b><br><br>مكافأة يومية تجريبية<br><button onclick="claimMessage(event,'المكافأة اليومية')">🎁 FREE</button></div><div class="freebox"><b>FREE</b><br><br>الهدايا الترويجية<br><button onclick="claimMessage(event,'الهدية')">🎁 FREE</button></div></div>
+  </div>
+</div>
+
+<div class="screen" id="rocketScreen">
+  <button class="back" onclick="closeAll()">← رجوع للألعاب</button>
+  <div class="game">
+    <div class="stage"><div id="stars"></div><div class="trail"></div><div class="ship" id="ship">🚀</div><div class="mx" id="mx">1.00x</div><div class="status" id="st">جاهز لجولة جديدة</div></div>
+    <div class="history" id="hist"></div>
+    <button class="play" id="start">🎮 ابدأ الجولة</button>
+    <button class="play cash" id="cash">💰 سحب عند <span id="cm">1.00</span>x</button>
+    <div class="info">أقل رهان 10 نجوم. عند 1.10x يحصل رهان 10 على 11 نجمة، والحد الأعلى 100x.</div>
+  </div>
+</div>
+
+<div class="screen" id="genericScreen"><button class="back" onclick="closeAll()">← رجوع للألعاب</button><div class="panel"><h2 id="panelTitle"></h2><p id="panelText" class="muted"></p></div></div>
+<div class="screen" id="leaderboardScreen"><button class="back" onclick="closeAll()">← رجوع للألعاب</button><div class="panel"><h2>🏆 التصنيف</h2><p class="muted">أعلى 100 لاعب لديهم رصيد ظاهر. من يخسر كل نجومه يُحذف من القائمة.</p><div id="leaderboard"></div></div></div>
+<div class="screen" id="inviteScreen"><button class="back" onclick="closeAll()">← رجوع للألعاب</button><div class="panel"><h2>👥 دعوة الأصدقاء</h2><p class="muted">كل مستخدم جديد يدخل من رابطك يحصل على 2 نجمة، وتحصل أنت على 5 نجوم.</p><div class="invite" id="refLink">الرابط سيظهر بعد فتح اللعبة من البوت.</div><button class="smallbtn" onclick="copyReferral()">نسخ الرابط</button><p id="refCount" class="muted"></p></div></div>
+
+<div class="nav"><div onclick="openInvite()">👥<br>Invite</div><div onclick="openRocket()">🚀<br>Rocket</div><div class="active" onclick="closeAll()">⌂<br>Home</div><div onclick="openLeaderboard()">🏆<br>Leaderboard</div><div onclick="openPanel('🎁 Earn','يمكنك الحصول على نجوم من روابط الدعوة ومن الإدارة. هذه النجوم افتراضية للتجربة فقط.')">🎁<br>Earn</div></div>
+<div class="toast" id="toast"></div>
+<script>
+/* في النشر: عيّن window.EPIC_GIFT_API_URL إلى عنوان خادم bot.py، أو اتركه فارغاً للتجربة المحلية. */
+const API_BASE=(window.EPIC_GIFT_API_URL||"").replace(/\/$/,"");
+const tg=window.Telegram?.WebApp; tg?.ready(); tg?.expand();
+const user=tg?.initDataUnsafe?.user||{id:"demo",first_name:"Player",username:""};
+if(user) document.getElementById("uname").textContent=(user.first_name||"Player");
+const initData=tg?.initData||"";
+let balance=0,running=false,mul=1,timer=null,pollTimer=null,roundBet=0,lastHistoryCount=0,localMode=!API_BASE;
+const demoKey="epic_gift_demo_balance";
+function showToast(text){const box=document.getElementById("toast");box.textContent=text;box.classList.add("show");setTimeout(()=>box.classList.remove("show"),2600)}
+function showBal(){document.getElementById("bal").textContent=Number(balance).toFixed(3)}
+function stars(){const box=document.getElementById("stars");for(let i=0;i<80;i++){const s=document.createElement("i");s.className="star";s.style.right=Math.random()*100+"%";s.style.top=Math.random()*100+"%";box.appendChild(s)}}
+stars();
+function closeAll(){document.querySelectorAll(".screen").forEach(x=>x.style.display="none");document.getElementById("home").style.display="block"}
+function openRocket(){document.getElementById("home").style.display="none";document.querySelectorAll(".screen").forEach(x=>x.style.display="none");document.getElementById("rocketScreen").style.display="block";syncState()}
+function openPanel(title,text){document.getElementById("home").style.display="none";document.querySelectorAll(".screen").forEach(x=>x.style.display="none");document.getElementById("genericScreen").style.display="block";document.getElementById("panelTitle").textContent=title;document.getElementById("panelText").textContent=text}
+function openLeaderboard(){document.getElementById("home").style.display="none";document.querySelectorAll(".screen").forEach(x=>x.style.display="none");document.getElementById("leaderboardScreen").style.display="block";syncState()}
+function openInvite(){document.getElementById("home").style.display="none";document.querySelectorAll(".screen").forEach(x=>x.style.display="none");document.getElementById("inviteScreen").style.display="block";syncState()}
+function claimMessage(e,name){e.stopPropagation();showToast(name+" متاحة بعد ربط نظام المكافآت.")}
+function setShip(progress){progress=Math.max(0,Math.min(1,progress));document.getElementById("ship").style.right=(45-progress*34)+"%";document.getElementById("ship").style.top=(45-progress*34)+"%"}
+function resetShip(){const ship=document.getElementById("ship");ship.classList.remove("explode");ship.style.opacity="1";setShip(0)}
+function renderHistory(items){const box=document.getElementById("hist");box.innerHTML="";(items||[]).slice(-12).reverse().forEach(item=>{const el=document.createElement("div");el.className="h "+(item.type==="crash"?"loss":"win");el.textContent=Number(item.multiplier||1).toFixed(2)+"x";box.appendChild(el)})}
+function demoCrash(){const r=Math.random();if(r<.45)return +(1.01+Math.random()*1.98).toFixed(2);if(r<.95)return +(3+Math.random()*17).toFixed(2);return 100}
+function demoState(){return {balance:Number(localStorage.getItem(demoKey)||0),active:null,history:JSON.parse(localStorage.getItem("epic_gift_demo_history")||"[]"),leaderboard:[],referral_link:""}}
+function saveDemoState(s){localStorage.setItem(demoKey,String(Math.max(0,Number(s.balance||0).toFixed(3))));localStorage.setItem("epic_gift_demo_history",JSON.stringify(s.history||[]))}
+async function api(path,method="GET",body=null){if(localMode)throw new Error("demo");const options={method,headers:{"X-Telegram-Init-Data":initData,"Content-Type":"application/json"}};if(body)options.body=JSON.stringify(body);const response=await fetch(API_BASE+path,options);const data=await response.json();if(!response.ok)throw new Error(data.error||"تعذر الاتصال بالخادم");return data}
+async function syncState(){
+ try{
+  const data=localMode?demoState():await api("/api/state");
+  balance=Number(data.balance||0);showBal();renderHistory(data.history||[]);lastHistoryCount=(data.history||[]).length;
+  if(data.referral_link){document.getElementById("refLink").textContent=data.referral_link}
+  renderLeaderboard(data.leaderboard||[]);return data;
+ }catch(error){showToast(error.message||"تعذر تحديث الرصيد");return null}
+}
+function renderLeaderboard(rows){const box=document.getElementById("leaderboard");if(!rows.length){box.innerHTML='<p class="muted">لا يوجد لاعبون لديهم نجوم حالياً.</p>';return}box.innerHTML=rows.slice(0,100).map(row=>`<div class="row"><span class="rank">${row.rank}.</span><span style="flex:1">${escapeHtml(row.username?"@"+row.username:row.name)}</span><b>⭐ ${Number(row.balance).toFixed(3)}</b></div>`).join("")}
+function escapeHtml(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
+function finishVisual(win,at){clearInterval(timer);clearInterval(pollTimer);timer=null;pollTimer=null;running=false;document.getElementById("cash").style.display="none";document.getElementById("start").disabled=false;document.getElementById("st").textContent=win?"🎉 انتهت الجولة بالسحب عند "+Number(at).toFixed(2)+"x":"💥 انتهت الجولة وانفجر الصاروخ عند "+Number(at).toFixed(2)+"x";document.getElementById("mx").textContent=Number(at).toFixed(2)+"x";if(!win)document.getElementById("ship").classList.add("explode");setTimeout(resetShip,1200);syncState()}
+function localStart(bet){let s=demoState();if(s.balance<bet)throw new Error("رصيدك لا يكفي لهذا الرهان.");s.balance-=bet;saveDemoState(s);roundBet=bet;const crash=demoCrash();let started=Date.now();running=true;mul=1;document.getElementById("cash").style.display="block";document.getElementById("start").disabled=true;document.getElementById("st").textContent="الجولة تعمل...";timer=setInterval(()=>{mul=Math.min(100,+(1+(((Date.now()-started)/1000)**1.35)*.32).toFixed(2));document.getElementById("mx").textContent=mul.toFixed(2)+"x";document.getElementById("cm").textContent=mul.toFixed(2);setShip(Math.log(mul)/Math.log(Math.max(1.01,crash)));if(mul>=crash){let h=s.history||[];h.push({type:"crash",multiplier:crash});s.history=h.slice(-100);saveDemoState(s);finishVisual(false,crash)}},100)}
+async function startRound(){if(running)return;const raw=prompt("كم نجمة تريد وضعها في الجولة؟\nأقل عدد هو 10 نجوم.","10");if(raw===null)return;const bet=Number(String(raw).replace(",","."));if(!Number.isFinite(bet)||bet<10){showToast("أقل رهان هو 10 نجوم.");return}if(localMode){try{localStart(Math.round(bet*1000)/1000)}catch(e){showToast(e.message)}return}try{const data=await api("/api/start","POST",{bet:Math.round(bet*1000)/1000});roundBet=data.bet;balance=data.balance;showBal();running=true;mul=1;resetShip();document.getElementById("cash").style.display="block";document.getElementById("start").disabled=true;document.getElementById("st").textContent="الجولة تعمل...";document.getElementById("mx").textContent="1.00x";document.getElementById("cm").textContent="1.00x";pollTimer=setInterval(pollRound,350);pollRound()}catch(e){showToast(e.message)}}
+async function pollRound(){if(!running)return;try{const data=await api("/api/state");balance=Number(data.balance||0);showBal();if(data.active){mul=Math.min(100,Number(data.active.multiplier||1));document.getElementById("mx").textContent=mul.toFixed(2)+"x";document.getElementById("cm").textContent=mul.toFixed(2);setShip(Math.min(1,Math.log(Math.max(1,mul))/Math.log(100)))}else{const last=(data.history||[]).slice(-1)[0];if(last?.type==="crash")finishVisual(false,last.multiplier)}}catch(e){console.warn(e)}}
+async function cashRound(){if(!running)return;if(localMode){const payout=+(roundBet*mul).toFixed(3),s=demoState();s.balance+=payout;s.history=(s.history||[]).concat({type:"cashout",multiplier:mul,payout}).slice(-100);saveDemoState(s);balance=s.balance;showBal();finishVisual(true,mul);return}try{const data=await api("/api/cash","POST");if(data.crashed){balance=data.balance;showBal();finishVisual(false,data.crash);showToast(data.error)}else{balance=data.balance;showBal();finishVisual(true,data.multiplier);showToast("استلمت "+Number(data.payout).toFixed(3)+" نجمة")}}catch(e){showToast(e.message)}}
+function copyReferral(){const value=document.getElementById("refLink").textContent;if(!value||value.includes("سيظهر")){showToast("افتح اللعبة من البوت حتى يظهر رابط الدعوة.");return}navigator.clipboard?.writeText(value).then(()=>showToast("تم نسخ الرابط"),()=>showToast(value))}
+document.getElementById("start").onclick=startRound;document.getElementById("cash").onclick=cashRound;document.getElementById("bal").onclick=()=>syncState();
+syncState();
+</script>
+</body>
+</html>
