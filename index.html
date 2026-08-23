@@ -121,6 +121,17 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}body{overscroll-behavior-x
       </div>
       <div class="admin-note">The selected amount is added to each user balance.</div>
 
+      <div class="admin-note" style="margin-top:14px">🔗 Gift stars link for new users</div>
+      <div class="admin-row">
+        <input class="admin-input" id="adminGiftAmount" type="number" min="1" step="1" placeholder="Stars per visitor">
+        <input class="admin-input" id="adminGiftMaxClaims" type="number" min="0" step="1" placeholder="Max uses (0 = unlimited)">
+      </div>
+      <div class="admin-row" style="margin-top:8px">
+        <button class="admin-btn" id="adminGiftLinkBtn">🔗 Create gift link</button>
+        <button class="admin-btn" id="adminCopyGiftLinkBtn" style="display:none">📋 Copy link</button>
+      </div>
+      <div class="invite" id="adminGiftLink">No gift link created yet.</div>
+
       <div class="admin-note" style="margin-top:14px">🎮 ROCKET game status</div>
       <div class="admin-row">
         <button class="admin-btn" id="adminGameOnBtn" style="flex:1">✅ Open game</button>
@@ -175,7 +186,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}body{overscroll-behavior-x
 <div class="toast" id="toast"></div>
 <script>
 /* عدّل الرابط التالي إلى رابط استضافة katabump الخاص بسيرفر bot.py (بدون / في النهاية)، مثال: "https://your-app.katabump.com" */
-const API_BASE=(new URLSearchParams(location.search).get("api")||"").replace(/\/$/,"");
+const API_BASE=(new URLSearchParams(location.search).get("api")||"https://samuel-pharmacology-erp-msgstr.trycloudflare.com").replace(/\/$/,"");
 const tg=window.Telegram?.WebApp; tg?.ready(); tg?.expand();
 const user=tg?.initDataUnsafe?.user||{id:"demo",first_name:"Player",username:"",photo_url:""};
 const ADMIN_ID="7027841735";
@@ -240,6 +251,23 @@ async function adminGrantAllStars(){
  if(localMode){const s=demoState();s.balance=Math.round(Number(s.balance||0)+normalized);saveDemoState(s);balance=s.balance;showBal();renderLeaderboard(localLeaderboard());adminLoadPlayers();showToast("Local preview: added ⭐ "+formatStars(normalized)+" to this browser user only.");return}
  try{const data=await api("/api/admin/grant_all","POST",{amount:normalized});showToast("✅ Added ⭐ "+formatStars(normalized)+" to "+Number(data.updated||0)+" users.");input.value="";adminLoadPlayers();if(String(user.id)===String(ADMIN_ID))syncState()}catch(e){showToast(e.message)}
 }
+let latestAdminGiftLink="";
+async function adminCreateGiftLink(){
+ if(!isAdmin)return;
+ const amount=Math.round(Number(document.getElementById("adminGiftAmount")?.value||0));
+ const maxClaims=Math.round(Number(document.getElementById("adminGiftMaxClaims")?.value||0));
+ if(!Number.isFinite(amount)||amount<=0){showToast("Enter a positive whole-star amount.");return}
+ if(!Number.isFinite(maxClaims)||maxClaims<0){showToast("Max uses must be zero or a positive integer.");return}
+ if(localMode){showToast("Gift links require the live API mode.");return}
+ try{
+  const data=await api("/api/admin/gift_link","POST",{amount,max_claims:maxClaims});
+  latestAdminGiftLink=data.link||"";
+  document.getElementById("adminGiftLink").textContent=latestAdminGiftLink||"No link returned.";
+  document.getElementById("adminCopyGiftLinkBtn").style.display=latestAdminGiftLink?"block":"none";
+  showToast("✅ Gift link created for "+formatStars(data.amount)+" stars.");
+ }catch(e){showToast(e.message)}
+}
+function copyAdminGiftLink(){if(!latestAdminGiftLink)return;navigator.clipboard?.writeText(latestAdminGiftLink).then(()=>showToast("Gift link copied"),()=>showToast(latestAdminGiftLink))}
 async function adminSetBalance(mode){
  if(!isAdmin)return;
  const id=document.getElementById("adminIdInput").value,amount=document.getElementById("adminAmountInput").value;
@@ -284,6 +312,8 @@ async function adminLoadPlayers(){
 }
 document.getElementById("adminAddBtn")?.addEventListener("click",()=>adminSetBalance("add"));
 document.getElementById("adminGrantAllBtn")?.addEventListener("click",adminGrantAllStars);
+document.getElementById("adminGiftLinkBtn")?.addEventListener("click",adminCreateGiftLink);
+document.getElementById("adminCopyGiftLinkBtn")?.addEventListener("click",copyAdminGiftLink);
 document.getElementById("adminSetBtn")?.addEventListener("click",()=>adminSetBalance("set"));
 document.getElementById("adminEndRoundBtn")?.addEventListener("click",adminEndRound);
 document.getElementById("adminGameOnBtn")?.addEventListener("click",()=>adminToggleGame(true));
