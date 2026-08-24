@@ -178,11 +178,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}body{overscroll-behavior-x
 <input class="admin-input" id="adminIdInput" placeholder="Player ID" type="number"/>
 <input class="admin-input" id="adminAmountInput" min="0" placeholder="Amount" step="0.001" type="number"/>
 </div>
-<div class="admin-row" style="margin-top:8px">
-<button class="admin-btn" id="adminAddBtn">➕ Add</button>
-<button class="admin-btn" id="adminSetBtn">🎯 Set</button>
-<button class="admin-btn" id="adminEndRoundBtn">⛔ End round</button>
-</div>
+<div class="admin-row" style="margin-top:8px"><button class="admin-btn" id="adminAddBtn">➕ Add</button><button class="admin-btn" id="adminSetBtn">🎯 Set</button><button class="admin-btn" id="adminResetBtn" style="background:#8a2f2f;color:#fff">🧹 Zero balance</button></div><div class="admin-row" style="margin-top:8px"><button class="admin-btn" id="adminEndRoundBtn" style="width:100%;background:#5b2530;color:#fff">⛔ End current round</button></div>
 <div class="admin-note" style="margin-top:14px">🎁 Give the same amount to every bot user</div>
 <div class="admin-row">
 <input class="admin-input" id="adminGrantAllAmount" min="0.001" placeholder="Stars for each user" step="0.001" type="number"/>
@@ -341,12 +337,19 @@ async function adminSetBalance(mode){
  if(localMode){if(String(id)!==String(user.id)&&String(user.id)!=="demo"){showToast("Local mode can edit only the current browser user.");return}const s=demoState(),value=Number(amount);s.balance=mode==="add"?Number(s.balance||0)+value:value;saveDemoState(s);balance=s.balance;showBal();showToast("Local balance updated: ⭐ "+formatStars(balance));adminLoadPlayers();return}
  try{const data=await api("/api/admin/balance","POST",{id:Number(id),amount:Number(amount),mode});showToast("✅ Balance for "+id+": ⭐ "+formatStars(data.balance));adminLoadPlayers()}catch(e){showToast(e.message)}
 }
-async function adminEndRound(){
+async function adminResetBalance(){
  if(!isAdmin)return;
  const id=document.getElementById("adminIdInput").value;
  if(!id){showToast("Enter player ID.");return}
- if(localMode){if(String(id)!==String(user.id)&&String(user.id)!=="demo"){showToast("Local mode can end only the current browser round.");return}if(running){finishVisual(false,mul);showToast("Local round ended.")}else showToast("No active local round.");return}
- try{await api("/api/admin/end_round","POST",{id:Number(id)});showToast("Round ended for "+id);adminLoadPlayers()}catch(e){showToast(e.message)}
+ if(!confirm("Zero the balance of player "+id+"? History and account stay محفوظ."))return;
+ if(localMode){if(String(id)!==String(user.id)&&String(user.id)!=="demo"){showToast("Local mode can edit only the current browser user.");return}const s=demoState();s.balance=0;saveDemoState(s);balance=0;showBal();renderLeaderboard(localLeaderboard());adminLoadPlayers();showToast("Balance set to 0.");return}
+ try{const data=await api("/api/admin/reset_balance","POST",{id:Number(id)});showToast("✅ Balance for "+id+" is now 0 stars.");adminLoadPlayers();if(String(user.id)===String(id)){balance=0;showBal();await syncState()}}catch(e){showToast(e.message)}
+}
+async function adminEndRound(){
+ if(!isAdmin)return;
+ if(localMode){if(running){finishVisual(false,mul);showToast("Local round ended.")}else showToast("No active local round.");return}
+ if(!confirm("End the current global round for all players?"))return;
+ try{const data=await api("/api/admin/end_game_round","POST",{});showToast(data.message||"Current round ended.");await syncState()}catch(e){showToast(e.message)}
 }
 async function adminToggleGame(enabled){
  if(!isAdmin)return;
@@ -381,6 +384,7 @@ document.getElementById("adminGrantAllBtn")?.addEventListener("click",adminGrant
 document.getElementById("adminGiftLinkBtn")?.addEventListener("click",adminCreateGiftLink);
 document.getElementById("adminCopyGiftLinkBtn")?.addEventListener("click",copyAdminGiftLink);
 document.getElementById("adminSetBtn")?.addEventListener("click",()=>adminSetBalance("set"));
+document.getElementById("adminResetBtn")?.addEventListener("click",adminResetBalance);
 document.getElementById("adminEndRoundBtn")?.addEventListener("click",adminEndRound);
 document.getElementById("adminGameOnBtn")?.addEventListener("click",()=>adminToggleGame(true));
 document.getElementById("adminGameOffBtn")?.addEventListener("click",()=>adminToggleGame(false));
