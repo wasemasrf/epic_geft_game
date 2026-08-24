@@ -135,7 +135,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}body{overscroll-behavior-x
 .game .stage .mx{top:50%!important;left:50%!important}
 .game .stage .round-countdown{top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;font-size:90px!important}
 @media(max-width:520px){.game .stage{height:calc(100vw - 20px)!important;min-height:320px!important}.game .stage .ship-wrap{width:170px!important;height:170px!important}.game .stage .ship-wrap .ship{width:160px!important;height:114px!important}.game .stage .rocket-stage-sticker{width:160px!important;height:114px!important}.game .stage .rocket-live-multiplier{left:8%;top:76%;font-size:21px!important}}
-#rocketScreen>.back,#rocketScreen .info,.history-title{display:none!important}.bet-panel>.bet-row:first-of-type{display:none!important}.game .stage{width:100%!important}.game .stage:not(.live-round):not(.crashed) .ship-wrap,.game .stage:not(.live-round):not(.crashed) .trail{display:none!important}
+#rocketScreen>.back,#rocketScreen .info,.history-title{display:none!important}.bet-panel>.bet-row:first-of-type{display:none!important}.game .stage{width:min(100%,540px)!important;height:auto!important;min-height:0!important;aspect-ratio:1/1!important;margin-inline:auto!important}.game .stage:not(.live-round):not(.crashed) .ship-wrap{display:block!important}.game .stage:not(.live-round):not(.crashed) .trail{display:none!important}
 </style>
 </head>
 <body>
